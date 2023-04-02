@@ -41,8 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get-token-and-numbers
-        run: touch response.json && \
-              curl --request GET https://fdeployserver.up.railway.app/challenge > ./response.json && \
+        run: touch response.json && curl --request GET https://fdeployserver.up.railway.app/challenge > ./response.json && \
               echo ::set-env name=TOKEN::$(jq '.token' response.json) && \
               echo ::set-env name=NUMBER_1::$(jq '.num1' response.json) && \
               echo ::set-env name=NUMBER_2::$(jq '.num2' response.json)
@@ -54,8 +53,7 @@ jobs:
               echo ::set-env name=NUMBER_3::$(( $NUMBER_1 + $NUMBER_2 ))
 
       - name: fake-deploy-check
-        run: touch status.txt && \
-              curl --location --request POST 'https://fdeployserver.up.railway.app/deploy' \
+        run: touch status.txt && curl --location --request POST 'https://fdeployserver.up.railway.app/deploy' \
               --header 'Content-Type:application/json' \
               --data-raw '{
               "token":"hkwx5b",
