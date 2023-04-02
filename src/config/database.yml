@@ -15,7 +15,10 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password:
-  socket: /var/run/mysqld/mysqld.sock
+  
+  # Name of the db container -> Docker automatically resolves the IP Address of the container
+  host: mysql-db
+  port: 3306
 
 development:
   <<: *default
