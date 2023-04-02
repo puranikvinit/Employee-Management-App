@@ -47,4 +47,4 @@ jobs:
           TOKEN: ./response.json["token"]
 
       - name: fake-deploy-check
-        run: touch status.json && curl -d {"token":"${TOKEN}", "submittedAnswer":${NUMBER_3}} --request POST https://fdeployserver.up.railway.app/deploy" > ./status.json && cat status.json
+        run: touch status.json && curl -d {"token":"${TOKEN}", "submittedAnswer":${NUMBER_3}} --request POST https://fdeployserver.up.railway.app/deploy > ./status.json && cat status.json
