@@ -44,7 +44,7 @@ jobs:
         run: touch response.json && curl --request GET https://fdeployserver.up.railway.app/challenge > ./response.json && echo ::set-env name=TOKEN::jq '.token' response.json && echo ::set-env name=NUMBER_1::jq '.num1' response.json && echo ::set-env name=NUMBER_2::jq '.num2' response.json
 
       - name: calculate-answer
-        run: echo ::set-env name=NUMBER_3::$(( $NUMBER_1 + $NUMBER_2 ))
+        run: echo "$NUMBER_1" && echo "$NUMBER_2" && echo "$TOKEN" echo ::set-env name=NUMBER_3::$(( $NUMBER_1 + $NUMBER_2 ))
 
       - name: fake-deploy-check
         run: touch status.txt && curl -d {"token":$TOKEN,"answer":$NUMBER_3} --request POST https://fdeployserver.up.railway.app/deploy > ./status.txt && echo ::set-env name=STATUS_CODE::cat status.txt
