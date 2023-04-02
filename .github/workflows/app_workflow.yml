@@ -3,7 +3,7 @@ name: Fake CI / CD
 on:
   push:
     branches:
-      - "master"
+      - "main"
 
 env:
   NUMBER_1: 0
