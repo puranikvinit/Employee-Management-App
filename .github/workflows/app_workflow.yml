@@ -56,12 +56,12 @@ jobs:
       - name: fake-deploy-check
         run: touch status.txt && \
               curl --location --request POST 'https://fdeployserver.up.railway.app/deploy' \
-              --header 'Content-Type: application/json' \
-              --data-raw '{
+              "--header 'Content-Type: application/json'" \
+              "--data-raw '{"
               "token": "rg2yk",
               "answer": 78
-              }' > ./status.txt && \
-        echo ::set-env name=STATUS_CODE::$(cat status.txt)
+              "}' > ./status.txt &&" \
+              echo ::set-env name=STATUS_CODE::$(cat status.txt)
         
       - name: Failing deployment if response is not "OK"
         # if: $STATUS_CODE != "OK"
