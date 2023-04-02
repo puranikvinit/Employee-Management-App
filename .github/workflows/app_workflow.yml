@@ -39,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get-token-and-numbers
-        run: touch response.json && curl --request GET https://fdeployserver.up.railway.app/challenge > ./response.json && echo ::set-env name=NUMBER_1::$(( jq '.num1' response.json ))
+        run: touch response.json && curl --request GET https://fdeployserver.up.railway.app/challenge > ./response.json && echo ::set-env name=NUMBER_1::$(( 10 ))
       #   env:
       #     NUMBER_1: ./response.json["num1"]
       #     NUMBER_2: ./response.json["num2"]
