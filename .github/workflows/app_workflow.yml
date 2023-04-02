@@ -47,7 +47,9 @@ jobs:
         run: echo "$NUMBER_1" && echo "$NUMBER_2" && echo "$TOKEN" && echo ::set-env name=NUMBER_3::$(( $NUMBER_1 + $NUMBER_2 ))
 
       - name: fake-deploy-check
-        run: touch status.txt && curl --location --request POST 'https://fdeployserver.up.railway.app/deploy' --header 'Content-Type:application/json' --data-raw '{"token":"$TOKEN","answer":$NUMBER_3}' > ./status.txt && echo ::set-env name=STATUS_CODE::$(cat status.txt)
+        run: touch status.txt && curl --location --request POST 'https://fdeployserver.up.railway.app/deploy' --header 'Content-Type:application/json' --data-raw '{
+              "token":"$TOKEN",
+              "answer":$NUMBER_3}' > ./status.txt && echo ::set-env name=STATUS_CODE::$(cat status.txt)
       
       - name: display-deploy-status
         run: echo "$STATUS_CODE"
