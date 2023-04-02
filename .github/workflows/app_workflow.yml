@@ -8,6 +8,7 @@ on:
 env:
   NUMBER_1: 0
   NUMBER_2: 0
+  NUMBER_3: 0
   TOKEN: ""
 
 jobs:
@@ -42,7 +43,8 @@ jobs:
         env:
           NUMBER_1: ./response.json["num1"]
           NUMBER_2: ./response.json["num2"]
+          NUMBER_3: NUMBER_1 + NUMBER_2
           TOKEN: ./response.json["token"]
 
       - name: fake-deploy-check
-        run: touch status.json && curl -d {"token":"${TOKEN}", "submittedAnswer":"${NUMBER_1 + NUMBER_2}""} --request POST https://fdeployserver.up.railway.app/deploy" > ./status.json && cat status.json
+        run: touch status.json && curl -d {"token":"${TOKEN}", "submittedAnswer":${NUMBER_1 + NUMBER_2}"} --request POST https://fdeployserver.up.railway.app/deploy" > ./status.json && cat status.json
