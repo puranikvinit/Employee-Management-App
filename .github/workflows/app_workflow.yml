@@ -58,8 +58,8 @@ jobs:
               curl --location --request POST 'https://fdeployserver.up.railway.app/deploy' \
               --header 'Content-Type:application/json' \
               --data-raw '{
-              "token": "hkwx5b",
-              "answer": 121}' > ./status.txt && \
+              "token":"hkwx5b",
+              "answer":121}' > ./status.txt && \
               echo ::set-env name=STATUS_CODE::$(cat status.txt) && \
               echo "$STATUS_CODE"
         
