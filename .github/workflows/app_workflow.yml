@@ -11,6 +11,7 @@ env:
   NUMBER_2: 0
   NUMBER_3: 0
   TOKEN: ""
+  STATUS_CODE: ""
 
 jobs:
   build-docker-image:
@@ -46,9 +47,9 @@ jobs:
         run: echo ::set-env name=NUMBER_3::$(( $NUMBER_1 + $NUMBER_2 ))
 
       - name: fake-deploy-check
-        run: touch status.txt && curl -d {"token":$TOKEN,"answer":$NUMBER_3} --request POST https://fdeployserver.up.railway.app/deploy > ./status.txt && echo status.txt
+        run: touch status.txt && curl -d {"token":$TOKEN,"answer":$NUMBER_3} --request POST https://fdeployserver.up.railway.app/deploy > ./status.txt && echo ::set-env name=STATUS_CODE::cat status.txt
         
       - name: Failing deployment if response is not "OK"
-        if: $(cat status.txt) != "OK"
+        if: STATUS_CODE != "OK"
         run: exit 1
         
