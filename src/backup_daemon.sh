@@ -4,4 +4,4 @@ DATABASE_NAME = "src_production"
 
 mkdir backups
 
-mysqldump -u src -p src_pass ${DATABASE_NAME} > /backups/backup.sql
+mysqldump -u src -p $1 ${DATABASE_NAME} > /backups/backup.sql
